@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Trophy, Users, Award, Lightbulb, Cloud, Zap, Code2, Presentation } from "lucide-react";
 
 const hackathons = [
@@ -221,7 +222,7 @@ export default function Achievements() {
                   <div className="flex items-start justify-between gap-3 mb-5">
                     {h.logoUrl ? (
                       <div className="w-9 h-9 rounded-lg bg-white p-1.5 shadow-sm flex items-center justify-center shrink-0">
-                        <img src={h.logoUrl} alt={`${h.name} logo`} className="w-full h-full object-contain" />
+                        <Image src={h.logoUrl} alt={`${h.name} logo`} width={24} height={24} className="object-contain" />
                       </div>
                     ) : (
                       <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-400/20 flex items-center justify-center shrink-0">
