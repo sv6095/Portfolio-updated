@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import Image from "next/image";
 import { ArrowDown, Download, MapPin } from "lucide-react";
 import { useRef } from "react";
 
@@ -42,15 +41,15 @@ export default function Hero() {
         style={{ y, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <motion.div 
+        <motion.div
           animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]" 
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
         />
-        <motion.div 
+        <motion.div
           animate={{ x: [0, -40, 30, 0], y: [0, 30, -30, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-[100px]" 
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-[100px]"
         />
       </motion.div>
 
@@ -136,18 +135,21 @@ export default function Hero() {
               {/* Glow blob */}
               <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-transparent rounded-full blur-2xl group-hover:from-blue-500/25 transition-all duration-700" />
 
-              {/* Avatar image */}
+              {/* Avatar video */}
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border border-[var(--glass-border)] shadow-2xl avatar-glow"
               >
-                <Image
-                  src="/avatar-cartoon.png"
-                  alt="Shantanu V. — AI/ML Engineer"
-                  fill
-                  className="object-cover object-top"
-                  priority
+                <video
+                  src="/wave-avatar.mp4"
+                  autoPlay
+                  muted
+                  playsInline
+                  onEnded={(e) => {
+                    e.currentTarget.currentTime = 1;
+                  }}
+                  className="w-full h-full object-cover object-top"
                 />
               </motion.div>
 
