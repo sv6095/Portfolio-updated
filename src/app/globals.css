@@ -1,26 +1,213 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-hover-border: rgba(0, 0, 0, 0.15);
+    --tag-bg: rgba(0, 0, 0, 0.04);
+    --tag-border: rgba(0, 0, 0, 0.08);
+    --tag-hover-bg: rgba(59, 130, 246, 0.1);
+    --tag-hover-border: rgba(59, 130, 246, 0.3);
+    --btn-secondary-border: rgba(0, 0, 0, 0.15);
+    --btn-secondary-text: #0f172a;
+    --btn-secondary-hover: rgba(0, 0, 0, 0.05);
+    --grid-color: rgba(0, 0, 0, 0.04);
+    --muted: #64748b;
+    --primary-text: #1d4ed8;
+  }
+
+  .dark {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #e0e3e5;
+    --glass-bg: rgba(17, 17, 17, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --card-bg: #0f1114;
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-hover-border: rgba(255, 255, 255, 0.12);
+    --tag-bg: rgba(255, 255, 255, 0.04);
+    --tag-border: rgba(255, 255, 255, 0.08);
+    --tag-hover-bg: rgba(173, 198, 255, 0.08);
+    --tag-hover-border: rgba(173, 198, 255, 0.2);
+    --btn-secondary-border: rgba(255, 255, 255, 0.1);
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-hover: rgba(255, 255, 255, 0.05);
+    --grid-color: rgba(255, 255, 255, 0.018);
+    --muted: #8c909f;
+    --primary-text: #adc6ff;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.4); }
+
+/* ─── Selection ─── */
+::selection {
+  background-color: rgba(59, 130, 246, 0.25);
+  color: var(--foreground);
+}
+
+/* ─── Glass panels ─── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ─── Bento cards ─── */
+.bento-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--card-hover-border);
+}
+
+/* ─── Tech tag ─── */
+.tech-tag {
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  color: var(--muted);
+}
+
+.tech-tag:hover {
+  background: var(--tag-hover-bg);
+  border-color: var(--tag-hover-border);
+}
+
+/* ─── Buttons ─── */
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.5);
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--btn-secondary-border);
+  color: var(--btn-secondary-text);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+  border-color: var(--btn-secondary-border);
+  transform: translateY(-1px);
+}
+
+/* ─── Marquee ─── */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 0.75rem;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-content-reverse {
+  display: inline-flex;
+  gap: 0.75rem;
+  animation: marquee-reverse 28s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ─── Grid background ─── */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ─── Avatar glow ─── */
+.avatar-glow {
+  box-shadow: 0 0 60px rgba(77, 142, 255, 0.15), 0 0 120px rgba(87, 27, 193, 0.08);
+}
+
+/* ─── Pulse ring ─── */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.2s ease-in-out infinite;
+}
+
+/* ─── Noise overlay ─── */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
 }
