@@ -34,11 +34,11 @@ const categories = [
     subcategories: [
       {
         name: "Languages",
-        tags: ["Python", "C++", "Java"],
+        tags: ["Python", "C++"],
       },
       {
         name: "Web Frameworks",
-        tags: ["Flask", "FastAPI", "Spring Boot"],
+        tags: ["Flask", "FastAPI"]
       },
       {
         name: "Databases",
@@ -65,7 +65,7 @@ const categories = [
       },
       {
         name: "Frameworks & UI Tools",
-        tags: ["React", "Next.js", "Flutter"],
+        tags: ["React", "Next.js"],
       },
     ],
   },
@@ -84,7 +84,7 @@ const categories = [
       },
       {
         name: "DevOps & Containers",
-        tags: ["Docker", "Kubernetes", "Git"],
+        tags: ["Docker", "Git"],
       },
       {
         name: "Methodology & Lifecycle",
